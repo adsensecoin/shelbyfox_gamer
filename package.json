@@ -1,0 +1,1 @@
+{"name": "optiflow-gamer-os","version": "1.0.0","description": "Package for OptiFlow Gamer OS","main": "index.js","scripts": {"start": "node index.js"},"dependencies": {"grpc": "^1.24.2","ws": "^8.0.0"},"engines": {"node": ">=20.0.0"}}
