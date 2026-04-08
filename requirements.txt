@@ -1,0 +1,11 @@
+torch
+tensorflow
+numpy
+redis
+grpcio
+scikit-learn
+pandas
+matplotlib
+seaborn
+nltk
+spacy
