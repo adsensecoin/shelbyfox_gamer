@@ -1,0 +1,40 @@
+{
+  "name": "optiflow-gamer-os",
+  "version": "0.1.0",
+  "description": "Sovereign, modular, AI-powered gaming operating system",
+  "private": true,
+  "workspaces": [
+    "core",
+    "sdk",
+    "plugins/*",
+    "turbo",
+    "orchestrator",
+    "cli"
+  ],
+  "scripts": {
+    "build": "npm run build --workspaces --if-present",
+    "build:core": "npm run build --workspace=core",
+    "build:sdk": "npm run build --workspace=sdk",
+    "build:orchestrator": "npm run build --workspace=orchestrator",
+    "build:cli": "npm run build --workspace=cli",
+    "build:turbo": "npm run build --workspace=turbo",
+    "dev": "npm run dev --workspace=orchestrator",
+    "test": "npm run test --workspaces --if-present",
+    "lint": "eslint \"**/*.ts\" --ignore-path .eslintignore",
+    "format": "prettier --write \"**/*.ts\" \"**/*.json\" \"**/*.md\"",
+    "clean": "rimraf \"**/dist\" \"**/node_modules/.cache\""
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "@typescript-eslint/eslint-plugin": "^7.0.0",
+    "@typescript-eslint/parser": "^7.0.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.2.5",
+    "rimraf": "^5.0.5",
+    "typescript": "^5.4.5"
+  },
+  "engines": {
+    "node": ">=20.0.0",
+    "npm": ">=10.0.0"
+  }
+}

@@ -1,21 +1,31 @@
-MIT License
+# OptiFlow Open Core License (Version 1.0)
 
-Copyright (c) 2026 Shelbyfox IA Hub
+Copyright (c) 2026 shelbyfox
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+## 1. THE OPEN ECOSYSTEM (MIT LICENSE)
+The following directories are licensed under the standard MIT License:
+- `plugins/`
+- `ai/` (excluding the core integration layer)
+- `orchestrator/`
+- `cli/`
+- `turbo/`
+- `docs/`
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+Permission is hereby granted, free of charge, to any person obtaining a copy of the software in these directories to deal in the software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+## 2. THE SEALED CORE (RESTRICTIVE LICENSE)
+The following directories constitute the "Sovereign Core" of OptiFlow Gamer OS and are **Sealed**:
+- `core/`
+- `sdk/`
+
+**Prohibitions:**
+- **NO MODIFICATIONS**: You are prohibited from modifying the source code or binary artifacts within these directories without explicit written authorization from `shelbyfox`.
+- **NO RE-DISTRIBUTION OF MODIFIED CORE**: You may not distribute versions of OptiFlow Gamer OS that contain a modified `core/` or `sdk/` directory.
+- **SIGNATURE PRESERVATION**: The cryptographic signatures and verification mechanisms within the core must remain intact and functional. Tampering with signature verification is a violation of this license.
+
+**Permissions:**
+- You are permitted to **run** the core as part of the official distribution.
+- You are permitted to **link** against the core and SDK to build plugins and extensions.
+
+## 3. NO WARRANTY
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.

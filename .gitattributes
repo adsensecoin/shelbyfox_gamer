@@ -1,0 +1,27 @@
+# Normalize line endings across platforms
+* text=auto eol=lf
+
+# Force binary for compiled artifacts
+*.pt binary
+*.pkl binary
+*.png binary
+*.jpg binary
+
+# Python
+*.py text eol=lf
+
+# TypeScript / JavaScript
+*.ts text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+
+# Markdown / YAML
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+
+# Protobuf
+*.proto text eol=lf
+
+# Shell scripts
+*.sh text eol=lf

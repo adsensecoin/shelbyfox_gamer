@@ -1,0 +1,88 @@
+version: '3.9'
+
+services:
+  # ── Infrastructure ───────────────────────────────────────────
+  redis:
+    image: redis:7-alpine
+    container_name: optiflow-redis
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: optiflow-postgres
+    environment:
+      POSTGRES_DB: optiflow
+      POSTGRES_USER: optiflow
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-changeme}
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U optiflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # ── AI Microservice ──────────────────────────────────────────
+  ai-service:
+    build:
+      context: ./ai
+      dockerfile: Dockerfile
+    container_name: optiflow-ai
+    environment:
+      - AI_DEVICE=${AI_DEVICE:-cpu}
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+    ports:
+      - "50051:50051"
+    volumes:
+      - ai_checkpoints:/app/checkpoints
+    depends_on:
+      redis:
+        condition: service_healthy
+
+  # ── Orchestrator ─────────────────────────────────────────────
+  orchestrator:
+    build:
+      context: .
+      dockerfile: orchestrator/Dockerfile
+    container_name: optiflow-orchestrator
+    environment:
+      - NODE_ENV=production
+      - REDIS_HOST=redis
+      - REDIS_PORT=6379
+      - AI_GRPC_HOST=ai-service
+      - AI_GRPC_PORT=50051
+      - POSTGRES_HOST=postgres
+      - POSTGRES_DB=optiflow
+      - POSTGRES_USER=optiflow
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD:-changeme}
+      - JWT_SECRET=${JWT_SECRET:-change-me}
+      - OPTIFLOW_ALLOW_UNSIGNED=${OPTIFLOW_ALLOW_UNSIGNED:-false}
+    ports:
+      - "3000:3000"
+      - "3001:3001"
+    depends_on:
+      redis:
+        condition: service_healthy
+      postgres:
+        condition: service_healthy
+      ai-service:
+        condition: service_started
+    volumes:
+      - ./plugins:/app/plugins:ro
+      - ./core/security/keys:/app/keys:ro
+
+volumes:
+  redis_data:
+  postgres_data:
+  ai_checkpoints:
